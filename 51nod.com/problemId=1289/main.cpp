@@ -1,4 +1,4 @@
-// http://www.51nod.com/Challenge/ProblemSubmitDetail.html#!#judgeId=17163
+// https://www.51nod.com/Html/Challenge/Problem.html#problemId=1289
 #include<iostream>
 #include<vector>
 using namespace std;
