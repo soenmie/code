@@ -6,7 +6,6 @@ import os
 import tempfile
 import stat
 import subprocess
-import sys
 
 import gradio as gr
 import requests
@@ -15,19 +14,19 @@ logging.basicConfig(level=logging.INFO)
 
 
 def get_access_token(is_debug=False):
-    url = os.environ('OAUTH_TOKEN_URL')
+    url = os.environ.get('OAUTH_TOKEN_URL')
 
     if is_debug:
         params = {
             'grant_type': 'client_credentials',
-            'client_id': os.environ('OFFLINE_AK'),
-            'client_secret': os.environ('OFFLINE_SK')
+            'client_id': os.environ.get('OFFLINE_AK'),
+            'client_secret': os.environ.get('OFFLINE_SK')
         }
     else:
         params = {
             'grant_type': 'client_credentials',
-            'client_id': os.environ('ONLINE_AK'),
-            'client_secret': os.environ('ONLINE_SK'),
+            'client_id': os.environ.get('ONLINE_AK'),
+            'client_secret': os.environ.get('ONLINE_SK'),
         }
 
     response = requests.get(url, params=params)
@@ -180,7 +179,7 @@ def initialize_components(*args):
 
 if __name__ == '__main__':
     with gr.Blocks(theme=gr.themes.Soft()) as demo:
-        url_box = gr.Textbox(label='大模型url', value=os.environ('LLM_SERVING_URL'), elem_id='url')
+        url_box = gr.Textbox(label='大模型url', value=os.environ.get('LLM_SERVING_URL'), elem_id='url')
         with gr.Row():
             is_debug_checkbox = gr.Checkbox(value=True, label='是否使用Debug环境', elem_id='is_debug')
             append_newline_checkbox = gr.Checkbox(label='是否结尾添加新行', elem_id='append_newline')
