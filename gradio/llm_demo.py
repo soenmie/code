@@ -20,7 +20,7 @@ def get_access_token(is_debug=False):
     if is_debug:
         params = {
             'grant_type': 'client_credentials',
-            'client_id': os.environ('OFFLINE_AK')
+            'client_id': os.environ('OFFLINE_AK'),
             'client_secret': os.environ('OFFLINE_SK')
         }
     else:
